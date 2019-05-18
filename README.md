@@ -24,30 +24,30 @@ namespace Prime_Numbers
             var isPrime = true;
             var primes = new List<ulong>(int.Parse(input) / 2) {2};
 			
-			Console.Write("\t2");
-			
-			for (ulong i = 3; i <= limit; i+=2)
-			{
-				isPrime = true;
-				ulong upperLimit = (ulong)(Math.Sqrt(i));
+            Console.Write("\t2");
 
-				foreach (ulong prime in primes)
-				{
-					if (prime > upperLimit)
-						break;
+            for (ulong i = 3; i <= limit; i+=2)
+            {
+                isPrime = true;
+                ulong upperLimit = (ulong)(Math.Sqrt(i));
 
-					if (i % prime == 0)
-					{
-						isPrime = false;
-						break;
-					}
-				}
-				if (isPrime)
-				{
-					Console.Write("\t" + i);
-					primes.Add(i);
-				}
-			}
+                foreach (ulong prime in primes)
+                {
+                    if (prime > upperLimit)
+                        break;
+
+                    if (i % prime == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime)
+                {
+                    Console.Write("\t" + i);
+                    primes.Add(i);
+                }
+            }
 
             Console.WriteLine("\n");
 
