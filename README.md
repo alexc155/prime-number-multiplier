@@ -15,23 +15,23 @@ namespace Prime_Numbers
         {
             Console.Write("Enter a max number:");
             var input = Console.ReadLine();
-            var limit = ulong.Parse(input);
+            var limit = uint.Parse(input);
             Console.WriteLine("\n");
 
             var s = new Stopwatch();
             s.Start();
 
             var isPrime = true;
-            var primes = new List<ulong>(int.Parse(input) / 2) {2};
+            var primes = new List<uint>(int.Parse(input) / 2) {2};
 			
             Console.Write("\t2");
 
-            for (ulong i = 3; i <= limit; i+=2)
+            for (uint i = 3; i <= limit; i+=2)
             {
                 isPrime = true;
-                ulong upperLimit = (ulong)(Math.Sqrt(i));
+                uint upperLimit = (uint)(Math.Sqrt(i));
 
-                foreach (ulong prime in primes)
+                foreach (uint prime in primes)
                 {
                     if (prime > upperLimit)
                         break;
