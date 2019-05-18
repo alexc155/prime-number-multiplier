@@ -14,7 +14,7 @@ namespace Prime_Numbers
         public static void Main(string[] args)
         {
             Console.Write("Enter a max number:");
-			var input = Console.ReadLine();
+            var input = Console.ReadLine();
             var limit = ulong.Parse(input);
             Console.WriteLine("\n");
 
