@@ -81,33 +81,31 @@ namespace Prime_Numbers
 {
     public static class Program
     {
-        public static bool[] nonprimes;
-        public static uint i = 2;
-        public static uint inputnumber;
-
         public static void Main(string[] args)
         {
             Console.Write("Enter a max number:");
-            var inputvar = Console.ReadLine();
+            string inputvar = Console.ReadLine();
 
             var s = Stopwatch.StartNew();
 
-            inputnumber = Convert.ToUInt32(inputvar);
-            nonprimes = new bool[inputnumber + 1];
+            uint inputnumber = Convert.ToUInt32(inputvar);
+            bool[] nonprimes = new bool[inputnumber + 1];
 
             nonprimes[0] = true;
             nonprimes[1] = true;
 
-            calcprime();
-            i++;
-
-            while (i < inputnumber)
+            for (uint i = 3; i < inputnumber; i += 2)
             {
-                calcprime();
-                i += 2;
+                uint k = 2;
+                uint j = i;
+                while (j * k <= inputnumber)
+                {
+                    nonprimes[j * k] = true;
+                    k++;
+                }
             }
 
-            var primes = new List<uint>(1000000);
+            var primes = new List<uint>((int)inputnumber / 2);
             uint counter = 0;
             foreach (var element in nonprimes)
             {
@@ -133,18 +131,6 @@ namespace Prime_Numbers
 
             s.Stop();
             Console.WriteLine("\nTime: " + s.ElapsedMilliseconds / 1000.0);
-
-        }
-
-        public static void calcprime()
-        {
-            uint k = 2;
-            var j = i;
-            while (j * k <= inputnumber)
-            {
-                nonprimes[j * k] = true;
-                k++;
-            }
         }
     }
 }
