@@ -9,34 +9,45 @@ using System.Diagnostics;
 
 namespace Prime_Numbers
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.Write("Enter a max number:");
-            var limit = int.Parse(Console.ReadLine());
+			var input = Console.ReadLine();
+            var limit = ulong.Parse(input);
             Console.WriteLine("\n");
 
             var s = new Stopwatch();
             s.Start();
 
             var isPrime = true;
-            var primes = new List<int>();
-            for (var i = 2; i <= limit; i++)
-            {
-                for (var j = 2; j <= limit; j++)
-                {
-                    if (i == j || i % j != 0) continue;
-                    isPrime = false;
-                    break;
-                }
-                if (isPrime)
-                {
-                    Console.Write("\t" + i);
-                    primes.Add(i);
-                }
-                isPrime = true;
-            }
+            var primes = new List<ulong>(int.Parse(input) / 2) {2};
+			
+			Console.Write("\t2");
+			
+			for (ulong i = 3; i <= limit; i+=2)
+			{
+				isPrime = true;
+				ulong upperLimit = (ulong)(Math.Sqrt(i));
+
+				foreach (ulong prime in primes)
+				{
+					if (prime > upperLimit)
+						break;
+
+					if (i % prime == 0)
+					{
+						isPrime = false;
+						break;
+					}
+				}
+				if (isPrime)
+				{
+					Console.Write("\t" + i);
+					primes.Add(i);
+				}
+			}
 
             Console.WriteLine("\n");
 
@@ -52,7 +63,6 @@ namespace Prime_Numbers
 
             s.Stop();
             Console.WriteLine("\nTime: " + s.ElapsedMilliseconds / 1000.0);
-            Console.ReadKey();
         }
     }
 }
