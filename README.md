@@ -68,4 +68,4 @@ namespace Prime_Numbers
 }
 ```
 
-[Run it here](https://dotnetfiddle.net/Ci0LRY) When n = 400, time taken = 0.015s
+[Run it here](https://dotnetfiddle.net/Ci0LRY) When n = 500, time taken = 0.003s
